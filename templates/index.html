@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Weather App</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #e0f7fa; display: flex; align-items: center; justify-content: center; height: 100vh; margin:0;}
+        .container { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;}
+        input, button { padding: 0.5rem; margin: 0.5rem 0;}
+        .result { margin-top: 1rem; }
+        .error { color: red; }
+    </style>
 </head>
 <body>
-
+    <div class="container">
+        <h1>Weather App</h1>
+        <form method="post">
+            <input type="text" name="city" placeholder="Enter city" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        <div class="result">
+            {% if weather %}
+                <h2>{{ weather.city }}</h2>
+                <p>🌡️ {{ weather.temperature }}°C</p>
+                <p>☁️ {{ weather.description }}</p>
+                <p>💧 Humidity: {{ weather.humidity }}%</p>
+                <p>🍃 Wind: {{ weather.wind }} m/s</p>
+            {% endif %}
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
